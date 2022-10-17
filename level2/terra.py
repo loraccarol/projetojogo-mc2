@@ -26,6 +26,12 @@ def level2():
     terra = font_1.render("T E R R A", True, ORANGE)
     instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
 
+    bioma1 = pygame.image.load("images/bioma1.png")
+    bioma2 = pygame.image.load("images/bioma2.png")
+    bioma3 = pygame.image.load("images/bioma3.png")
+    bioma4 = pygame.image.load("images/bioma4.png")
+    tree = pygame.image.load("images/tree.png")
+
     def init():
         screen.fill(BEIGE)
         screen.blit(welcome, (335, 260))
@@ -38,6 +44,7 @@ def level2():
         screen.fill((255, 187, 153))
         screen.blit(instruction, (180, 260))
         pygame.display.update()
+        pygame.time.delay(2000)
 
     init()
     active = True
@@ -45,6 +52,13 @@ def level2():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 active = False
+        screen.blit(bioma1, (0, 0))
+        tree_x = 60
+        for i in range(0, 4):
+            screen.blit(tree, (tree_x, 410))
+            tree_x += 210
+
+        pygame.display.update()
 
 
 def level3():
