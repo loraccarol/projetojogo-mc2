@@ -20,44 +20,64 @@ def level1():
 
 
 def level2():
+    # Fonts
     font_1 = pygame.font.SysFont("poorrichard", 70, bold=False, italic=False)
     font_2 = pygame.font.SysFont("arial", 48, bold=False, italic=False)
-    welcome = font_1.render("Nível 2", True, ORANGE)
+
+    # Texts
+    #welcome = font_1.render("Nível 2", True, ORANGE)
     terra = font_1.render("T E R R A", True, ORANGE)
     instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
 
-    bioma1 = pygame.image.load("images/bioma1.png")
-    bioma2 = pygame.image.load("images/bioma2.png")
-    bioma3 = pygame.image.load("images/bioma3.png")
-    bioma4 = pygame.image.load("images/bioma4.png")
+    # Images
     tree = pygame.image.load("images/tree.png")
 
-    def init():
-        screen.fill(BEIGE)
-        screen.blit(welcome, (335, 260))
-        pygame.display.update()
-        pygame.time.delay(2000)
-        screen.fill(BEIGE)
-        screen.blit(terra, (320, 260))
-        pygame.display.update()
-        pygame.time.delay(2000)
-        screen.fill((255, 187, 153))
-        screen.blit(instruction, (180, 260))
-        pygame.display.update()
-        pygame.time.delay(2000)
-
-    init()
-    active = True
-    while active:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                active = False
-        screen.blit(bioma1, (0, 0))
+    def plot_symbols():
         tree_x = 60
         for i in range(0, 4):
             screen.blit(tree, (tree_x, 410))
             tree_x += 210
 
+    def plot_green():
+        teste = True
+        while teste:
+            screen.fill((0, 255, 0))
+            plot_symbols()
+            pygame.display.update()
+            for event2 in pygame.event.get():
+                if event2.type == pygame.QUIT:
+                    teste = False
+                if event2.type == pygame.MOUSEBUTTONDOWN:
+                    pos2 = pygame.mouse.get_pos()
+                    if 59 < pos2[0] < 459:
+                        # somar ou subtrair os pontos
+                        print("AQUI")
+                        teste = False
+
+    active = True
+    while active:
+        #print(pygame.mouse.get_pos())
+        for event1 in pygame.event.get():
+            if event1.type == pygame.QUIT:
+                active = False
+            #screen.blit(taiga2, (0, 0))
+            screen.fill((255, 0, 0))
+            plot_symbols()
+            #tree_x = 60
+            #for i in range(0, 4):
+            #    screen.blit(tree, (tree_x, 410))
+            #    tree_x += 210
+            #for event2 in pygame.event.get():
+            if event1.type == pygame.MOUSEBUTTONDOWN:
+                pos1 = pygame.mouse.get_pos()
+                if 59 < pos1[0] < 459:
+                    # somar ou subtrair os pontos
+                    plot_green()
+                    active = False
+                if 400 < pos1[0] < 800:
+                    print("OII")
+                    plot_green()
+                    active = False
         pygame.display.update()
 
 
