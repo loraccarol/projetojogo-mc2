@@ -25,17 +25,18 @@ def level2():
     font_2 = pygame.font.SysFont("arial", 48, bold=False, italic=False)
 
     # Texts
-    #welcome = font_1.render("Nível 2", True, ORANGE)
+    welcome = font_1.render("Nível 2", True, ORANGE)
     terra = font_1.render("T E R R A", True, ORANGE)
     instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
 
     # Images
-    tree = pygame.image.load("level2/images/tree.png")
+    #tree = pygame.image.load("level2/images/tree.png")
+    trash = pygame.image.load("level2/metal_pixel.png")
 
     def plot_symbols():
         tree_x = 60
-        for i in range(0, 4):
-            screen.blit(tree, (tree_x, 410))
+        for i in range(0, 5):
+            screen.blit(trash, (tree_x, 410))
             tree_x += 210
 
     def plot_green():
@@ -52,15 +53,46 @@ def level2():
                     if 59 < pos2[0] < 459:
                         # somar ou subtrair os pontos
                         print("AQUI")
+                        plot_blue()
                         teste = False
 
+    def plot_blue():
+        teste = True
+        while teste:
+            screen.fill((0, 0, 255))
+            plot_symbols()
+            pygame.display.update()
+            for event2 in pygame.event.get():
+                if event2.type == pygame.QUIT:
+                    teste = False
+                if event2.type == pygame.MOUSEBUTTONDOWN:
+                    pos2 = pygame.mouse.get_pos()
+                    if 59 < pos2[0] < 459:
+                        # somar ou subtrair os pontos
+                        print("AQUI")
+                        teste = False
+
+    start = True
+    while start:
+        for start_event in pygame.event.get():
+            if start_event.type == pygame.QUIT:
+                pygame.quit()
+            else:
+                screen.fill(BEIGE)
+                screen.blit(terra, (300, 300))
+                pygame.display.update()
+                start = False
+
+    pygame.time.delay(1000)
+    screen.blit(welcome, (300, 500))
+    pygame.display.update()
+    pygame.time.delay(1000)
     active = True
     while active:
         #print(pygame.mouse.get_pos())
         for event1 in pygame.event.get():
             if event1.type == pygame.QUIT:
-                active = False
-            #screen.blit(taiga2, (0, 0))
+                pygame.quit()
             screen.fill((255, 0, 0))
             plot_symbols()
             #tree_x = 60

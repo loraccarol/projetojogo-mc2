@@ -55,7 +55,7 @@ while not done:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done = True
+            pygame.quit()
 
     screen.blit(bg, (0, 0))
     screen.blit(spaceship, spaceship_rect)
