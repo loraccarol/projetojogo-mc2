@@ -30,14 +30,15 @@ def level2():
     instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
 
     # Images
+    #plastic = pyga
     #tree = pygame.image.load("level2/images/tree.png")
-    trash = pygame.image.load("level2/metal_pixel.png")
+    metal = pygame.image.load("level2/metal_pixel.png")
 
     def plot_symbols():
-        tree_x = 60
+        tree_x = 15
         for i in range(0, 5):
-            screen.blit(trash, (tree_x, 410))
-            tree_x += 210
+            screen.blit(metal, (tree_x, 410))
+            tree_x += 180
 
     def plot_green():
         teste = True
