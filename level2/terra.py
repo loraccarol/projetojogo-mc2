@@ -30,7 +30,7 @@ def level2():
     instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
 
     # Images
-    tree = pygame.image.load("images/tree.png")
+    tree = pygame.image.load("level2/images/tree.png")
 
     def plot_symbols():
         tree_x = 60
