@@ -1,27 +1,26 @@
-# Carolina Carvalho dos Santos 32129645
 import pygame
 import random
 
 pygame.init()
 
-# screen
-screen_w = 612
-screen_h = 382
+# Screen
+screen_w = 900
+screen_h = 600
 SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("Explosão")
+pygame.display.set_caption("Nível 04 - Ar")
 
 # images
-bg = pygame.image.load("space.jpg")
+bg = pygame.image.load("level4/space.jpg")
 
-spaceship = pygame.image.load("spaceship.png")
+spaceship = pygame.image.load("level4/spaceship.png")
 spaceship = pygame.transform.scale(spaceship, (50, 50))
 spaceship_rect = spaceship.get_rect()
 
-meteor = pygame.image.load("meteor.png")
+meteor = pygame.image.load("level4/meteor.png")
 meteor = pygame.transform.scale(meteor, (40, 34))
 
-explosion = pygame.image.load("explosao.png")
+explosion = pygame.image.load("level4/explosao.png")
 
 def get_frame (gId, columns, height, width, space_h, space_v, margin, top):
     global explosion
@@ -41,7 +40,7 @@ meteor_list = []
 
 for i in range(25):
     meteor_rect = meteor.get_rect()
-    meteor_rect.x = random.randrange(0, 612)
+    meteor_rect.x = random.randrange(0, screen_w)
     meteor_rect.y = random.randrange(-1000, 10)
     meteor_list.append(meteor_rect)
     fps = pygame.time.Clock()   
@@ -76,23 +75,23 @@ while not done:
 
     if spaceship_rect.x < 0:
         spaceship_rect.x = 0
-    if spaceship_rect.x > 560:
-        spaceship_rect.x = 560
+    if spaceship_rect.x > screen_w - 50:
+        spaceship_rect.x = screen_w - 50
     if spaceship_rect.y < 0:
         spaceship_rect.y = 0
-    if spaceship_rect.y > 332:
-        spaceship_rect.y = 332 
+    if spaceship_rect.y > screen_h - 50:
+        spaceship_rect.y = screen_h - 50
 
     for i in range(len(meteor_list)):
         screen.blit(meteor, meteor_list[i])
 
         meteor_list[i][1] += 4
-        if meteor_list[i][1] > 612:
+        if meteor_list[i][1] > screen_w:
 
             meteor_rect.y = random.randrange(-50, -10)
             meteor_list[i][1] = meteor_rect.y
 
-            meteor_rect.x = random.randrange(0, 612)
+            meteor_rect.x = random.randrange(0, screen_w)
             meteor_list[i][0] = meteor_rect.x
         
         if spaceship_rect.collidelist(meteor_list) >= 0:
