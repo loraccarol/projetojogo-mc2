@@ -30,8 +30,8 @@ def level2():
     instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
 
     # Images
-    #plastic = pyga
-    #tree = pygame.image.load("level2/images/tree.png")
+    plastic = pygame.image.load("level2/")
+    tree = pygame.image.load("level2/images/tree.png")
     metal = pygame.image.load("level2/metal_pixel.png")
 
     def plot_symbols():
