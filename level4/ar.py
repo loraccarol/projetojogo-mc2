@@ -11,17 +11,17 @@ SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Nível 04 - Ar")
 
-# images
-bg = pygame.image.load("level4/images/space.jpg")
+# assets
+bg = pygame.image.load("level4/assets/space.jpg")
 
-spaceship = pygame.image.load("level4/images/spaceship.png")
+spaceship = pygame.image.load("level4/assets/spaceship.png")
 spaceship = pygame.transform.scale(spaceship, (50, 50))
 spaceship_rect = spaceship.get_rect()
 
-meteor = pygame.image.load("level4/images/meteor.png")
+meteor = pygame.image.load("level4/assets/meteor.png")
 meteor = pygame.transform.scale(meteor, (40, 34))
 
-explosion = pygame.image.load("level4/images/explosao.png")
+explosion = pygame.image.load("level4/assets/explosao.png")
 
 def get_frame (gId, columns, height, width, space_h, space_v, margin, top):
     global explosion

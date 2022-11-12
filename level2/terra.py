@@ -10,36 +10,35 @@ screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Nível 02 - Terra")
 
 # Colors
-BEIGE = (255, 191, 128)
-ORANGE = (255, 71, 26)
-GREEN = (102, 153, 0)
+GREEN = (0, 204, 0)
+BLUE = (0, 51, 204)
+YELLOW = (255, 255, 26)
+BROWN = (204, 102, 0)
+RED = (255, 26, 26)
+BLUE1 = (102, 153, 255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+# Fonts & Texts
+font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
+text = font.render("PLACAR:", True, BLACK)
+font1 = pygame.font.SysFont("twcen", 40, bold=False, italic=False)
+text1 = font1.render("Pontuação final: ", True, WHITE)
+text2 = font1.render("Siga para o próximo nível !!", True, BLACK)
+
+# Images
+plastic = pygame.image.load("level2/assets/plastico_pixel.png")
+glass = pygame.image.load("level2/assets/vidro_pixel.png")
+paper = pygame.image.load("level2/assets/papel_pixel.png")
+metal = pygame.image.load("level2/assets/metal_pixel.png")
+organic = pygame.image.load("level2/assets/organico_pixel.png")
+images = (metal, plastic, organic, paper, glass)
 
 # Score
 score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
 
 
-def level1():
-    pass
-
-
 def level2():
-    # Fonts
-    font_1 = pygame.font.SysFont("poorrichard", 90, bold=False, italic=False)
-    font_2 = pygame.font.SysFont("arial", 48, bold=False, italic=False)
-
-    # Texts
-    #welcome = font_1.render("Nível 2", True, ORANGE)
-    terra = font_1.render("T E R R A", True, ORANGE)
-    instruction = font_2.render("Vamos reflorestar os biomas?", True, GREEN)
-
-    # Images
-    plastic = pygame.image.load("level2/images/plastico_pixel.png")
-    glass = pygame.image.load("level2/images/vidro_pixel.png")
-    paper = pygame.image.load("level2/images/papel_pixel.png")
-    metal = pygame.image.load("level2/images/metal_pixel.png")
-    organic = pygame.image.load("level2/images/organico_pixel.png")
-    images = (metal, plastic, organic, paper, glass)
-
     def plot_symbols():
         firstPosition = 25
         for i in range(len(images)):
@@ -47,10 +46,14 @@ def level2():
             firstPosition += 175
 
     def plot_green():
+        pts2 = str(score[1])
+        points2 = font.render(pts2, True, BLACK)
         green = True
         while green:
-            screen.fill((0, 255, 0))
+            screen.fill(GREEN)
             plot_symbols()
+            screen.blit(text, (700, 40))      # Placar
+            screen.blit(points2, (810, 40))   # Pontuação
             pygame.display.update()
             for event1 in pygame.event.get():
                 if event1.type == pygame.QUIT:
@@ -84,10 +87,14 @@ def level2():
                         green = False
 
     def plot_blue():
+        pts3 = str(score[1])
+        points3 = font.render(pts3, True, BLACK)
         blue = True
         while blue:
-            screen.fill((0, 0, 255))
+            screen.fill(BLUE)
             plot_symbols()
+            screen.blit(text, (700, 40))     # Placar
+            screen.blit(points3, (810, 40))  # Pontuação
             pygame.display.update()
             for event2 in pygame.event.get():
                 if event2.type == pygame.QUIT:
@@ -121,10 +128,14 @@ def level2():
                         blue = False
 
     def plot_yellow():
+        pts4 = str(score[1])
+        points4 = font.render(pts4, True, BLACK)
         yellow = True
         while yellow:
-            screen.fill((255, 255, 0))
+            screen.fill(YELLOW)
             plot_symbols()
+            screen.blit(text, (700, 40))     # Placar
+            screen.blit(points4, (810, 40))  # Pontuação
             pygame.display.update()
             for event3 in pygame.event.get():
                 if event3.type == pygame.QUIT:
@@ -158,37 +169,85 @@ def level2():
                         yellow = False
 
     def plot_brown():
-        pass
+        pts5 = str(score[1])
+        points5 = font.render(pts5, True, BLACK)
+        brown = True
+        while brown:
+            screen.fill(BROWN)
+            plot_symbols()
+            screen.blit(text, (700, 40))     # Placar
+            screen.blit(points5, (810, 40))  # Pontuação
+            pygame.display.update()
+            for event4 in pygame.event.get():
+                if event4.type == pygame.QUIT:
+                    pygame.quit()
+                if event4.type == pygame.MOUSEBUTTONDOWN:
+                    pos4 = pygame.mouse.get_pos()
+                    if 25 < pos4[0] < 175 and 400 < pos4[1] < 550:  # Opção errada
+                        score[1] -= 5  # Pontuação
+                        print(score[1])
+                        end()
+                        brown = False
+                    if 200 < pos4[0] < 350 and 400 < pos4[1] < 550:  # Opção errada
+                        score[1] -= 5  # Pontuação
+                        print(score[1])
+                        end()
+                        brown = False
+                    if 375 < pos4[0] < 525 and 400 < pos4[1] < 550:  # Opção correta - orgânico
+                        score[1] += 5  # Pontuação
+                        print(score[1])
+                        end()
+                        brown = False
+                    if 550 < pos4[0] < 700 and 400 < pos4[1] < 550:  # Opção errada
+                        score[1] -= 5  # Pontuação
+                        print(score[1])
+                        end()
+                        brown = False
+                    if 725 < pos4[0] < 875 and 400 < pos4[1] < 550:  # Opção errada
+                        score[1] -= 5  # Pontuação
+                        print(score[1])
+                        end()
+                        brown = False
 
-    intro = True
-    while intro:
-        for intro_event in pygame.event.get():
-            if intro_event.type == pygame.QUIT:
-                pygame.quit()
-            else:
-                screen.fill(BEIGE)
-                screen.blit(terra, (280, 250))
-                pygame.display.update()
-                intro = False
+    def end():
+        pts6 = str(score[1])
+        points6 = font.render(pts6, True, (0, 0, 0))
+        end_level = True
+        while end_level:
+            screen.fill(BROWN)
+            plot_symbols()
+            screen.blit(text, (700, 40))     # Placar
+            screen.blit(points6, (810, 40))  # Pontuação
+            pygame.display.update()
+            for event5 in pygame.event.get():
+                if event5.type == pygame.QUIT:
+                    pygame.quit()
+            pygame.time.delay(1500)
+            screen.fill(BLUE1)
+            screen.blit(text1, (290, 250))
+            screen.blit(text2, (225, 300))
+            points6 = font1.render(pts6, True, WHITE)
+            screen.blit(points6, (560, 250))
+            pygame.display.update()
+            pygame.time.delay(3000)
+            break
+            # return score[1]
 
-    pygame.time.delay(2000)
-    #plotar o bichinho aqui
-    #screen.blit(welcome, (300, 500))
-    #pygame.display.update()
-    #pygame.time.delay(1000)
+    pts1 = str(score[1])
+    points1 = font.render(pts1, True, BLACK)
     levelActive = True
     while levelActive:
-        #print(pygame.mouse.get_pos())
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-            screen.fill((255, 0, 0))  # Red
+            screen.fill(RED)
             plot_symbols()
+            screen.blit(text, (700, 40))     # Placar
+            screen.blit(points1, (810, 40))  # Pontuação
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                if 25 < pos[0] < 175 and 400 < pos[1] < 550:  # Opção errada
+                if 25 < pos[0] < 175 and 400 < pos[1] < 550:   # Opção errada
                     score[1] -= 5  # Pontuação
-                    print(score[1])
                     plot_green()
                     levelActive = False
                 if 200 < pos[0] < 350 and 400 < pos[1] < 550:  # Opção correta - plástico
@@ -214,18 +273,5 @@ def level2():
         pygame.display.update()
 
 
-def level3():
-    pass
-
-
-def level4():
-    pass
-
-
-def main():
-    # Chamar método de abertura do jogo
-    level2()
-
-
-main()
+level2()
 pygame.quit()
