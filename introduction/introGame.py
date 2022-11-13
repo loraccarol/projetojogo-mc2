@@ -24,7 +24,7 @@ font3 = pygame.font.SysFont("arial", 22, bold=False, italic=False)
 
 # Texts
 title = font1.render("E L E M E N T S", True, PINK)
-text = font2.render("pressione alguma tecla para continuar", True, (115, 77, 38))
+text = font2.render("pressione a tecla S para continuar", True, (115, 77, 38))
 intro1 = font3.render("Olá, somos um grupo de amigos e precisamos de você para tornar a Terra "
                       "um planeta melhor!", True, BLACK)
 intro2 = font3.render("Ajude a nossa amiga Sol a realizar os desafios ambientais dos próximos níveis!", True, BLACK)
@@ -48,12 +48,12 @@ while startGame:
     for event1 in pygame.event.get():
         if event1.type == pygame.QUIT:
             pygame.quit()
-        if event1.type == pygame.KEYUP:
+        if event1.type == pygame.KEYUP and event1.key == pygame.K_s:
             startGame = False
     screen.fill(BEIGE)
-    screen.blit(title, (235, 30))
+    screen.blit(title, (230, 30))
     screen.blit(elements, (270, 160))
-    screen.blit(text, (240, 530))
+    screen.blit(text, (265, 530))
     pygame.display.update()
 
 startAnimals = True
