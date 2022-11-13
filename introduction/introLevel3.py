@@ -23,22 +23,25 @@ font1 = pygame.font.SysFont(font, 40)
 font2 = pygame.font.SysFont(font, 30)
 font3 = pygame.font.SysFont("twcen", 20, bold=False, italic=False)
 font_intro = pygame.font.SysFont("poorrichard", 90, bold=False, italic=False)
+font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 
 # Texts
 fire = font_intro.render("F O G O", True, PINK)
+textMusic = font_music.render("M = music on/off", True, BLACK)
 
 text1 = font1.render("Olá, eu me chamo OLIVER", True, BLUE2)
 text2 = font1.render("e vou te ajudar no próximo nível!", True, BLUE2)
 
-text3 = font2.render("Blá blá blá sobre o nível...", True, BLACK)
-text4 = font2.render("...", True, BLACK)
-text5 = font2.render("...", True, BLACK)
-text6 = font2.render("Ajude a Sol com ...", True, WHITE)
-text7 = font2.render("Como jogar...", True, WHITE)
-text8 = font2.render("Pontuação...", True, WHITE)
-text9 = font2.render("BOA SORTE!!", True, WHITE)
+text3 = font2.render("Você sabe o que é lixo eletrônico?", True, BLACK)
+text4 = font2.render("São os aparelhos eletrônicos que são jogados fora ou não funcionam mais,", True, BLACK)
+text5 = font2.render("como pilhas, computadores e celulares. Por serem muito tecnológicos, eles", True, BLACK)
+text6 = font2.render("precisam ter um descarte diferente.", True, BLACK)
+text7 = font2.render("Você pode ajudar a Sol a separar o lixo eletrônico do normal?", True, WHITE)
+text8 = font2.render("Clique com o mouse em todos que encontrar.", True, WHITE)
+text9 = font2.render("Pontuação...", True, WHITE)
+text10 = font2.render("Boa sorte!!", True, BLUE2)
 
-end = font3.render("pressione alguma tecla para continuar", True, BLACK)
+end = font3.render("pressione a tecla S para continuar", True, BLACK)
 
 # Images
 oliver = pygame.image.load("level3/assets/oliver.png")
@@ -53,20 +56,22 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
             done = True
         screen.fill(BLUE1)
-        screen.blit(oliver, (660, 50))
-        screen.blit(text1, (25, 50))
-        screen.blit(text2, (25, 90))
-        screen.blit(text3, (25, 200))
-        screen.blit(text4, (25, 230))
-        screen.blit(text5, (25, 260))
-        screen.blit(text6, (25, 340))
-        screen.blit(text7, (25, 370))
-        screen.blit(text8, (25, 400))
-        screen.blit(text9, (25, 430))
-        screen.blit(end, (550, 540))
+        screen.blit(textMusic, (10, 10))
+        screen.blit(oliver, (660, 25))
+        screen.blit(text1, (25, 70))
+        screen.blit(text2, (25, 110))
+        screen.blit(text3, (25, 210))
+        screen.blit(text4, (25, 240))
+        screen.blit(text5, (25, 270))
+        screen.blit(text6, (25, 300))
+        screen.blit(text7, (25, 380))
+        screen.blit(text8, (25, 410))
+        screen.blit(text9, (25, 440))
+        screen.blit(text10, (25, 470))
+        screen.blit(end, (570, 540))
 
         pygame.display.update()
 
