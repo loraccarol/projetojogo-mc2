@@ -33,12 +33,13 @@ text1 = font1.render("Olá, eu me chamo Lúcia", True, BLUE2)
 text2 = font1.render("e vou te ajudar no próximo nível!", True, BLUE2)
 
 text3 = font2.render("Vamos aprender um pouco mais sobre lixo espacial?", True, BLACK)
-text4 = font2.render("O lixo espacial...", True, BLACK)
-text5 = font2.render("E para ajudar...", True, BLACK)
-text6 = font2.render("Ajude a Sol com", True, WHITE)
-text7 = font2.render("Como jogar...", True, WHITE)
-text8 = font2.render("Pontuação...", True, WHITE)
-text9 = font2.render("Boa sorte!!", True, BLUE2)
+text4 = font2.render("O lixo espacial é tudo aquilo que foi lançado no espaço, sendo", True, BLACK)
+text5 = font2.render("que nada disso tem utilidade para o planeta Terra...", True, BLACK)
+text6 = font2.render("Ajude a Sol na nave espacial a pegar os destroços jogados no espaço!", True, WHITE)
+text7 = font2.render("Com as setas do teclado, voe pelo espaço procurando e pegando o lixo espacial.", True, WHITE)
+text8 = font2.render("Você terá 30 segundos para completar o desafio.", True, WHITE)
+text9 = font2.render("Mas cuidado com os meteoros, eles fazem você perder pontos.", True, WHITE)
+text10 = font2.render("Boa sorte!!", True, BLUE2)
 
 end = font3.render("pressione a tecla S para continuar", True, BLACK)
 
@@ -69,6 +70,7 @@ while not done:
         screen.blit(text7, (25, 370))
         screen.blit(text8, (25, 400))
         screen.blit(text9, (25, 430))
+        screen.blit(text10, (25, 460))
         screen.blit(end, (570, 540))
 
         pygame.display.update()
