@@ -7,7 +7,7 @@ screen_w = 900
 screen_h = 600
 SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("Nível 02 - Terra")
+pygame.display.set_caption("NÍVEL 2 - TERRA")
 
 # Colors
 GREEN = (0, 204, 0)
@@ -19,12 +19,14 @@ BLUE1 = (102, 153, 255)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
-# Fonts & Texts
+# Fonts
 font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
-text = font.render("PLACAR:", True, BLACK)
-font1 = pygame.font.SysFont("twcen", 40, bold=False, italic=False)
+font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
+
+# Texts
+scoreboard = font.render("Placar:", True, BLACK)
 text1 = font1.render("Pontuação final: ", True, WHITE)
-text2 = font1.render("Siga para o próximo nível !!", True, BLACK)
+text2 = font1.render("Siga para o próximo nível  =)", True, BLACK)
 
 # Images
 plastic = pygame.image.load("level2/assets/plastico_pixel.png")
@@ -52,15 +54,15 @@ def level2():
         while green:
             screen.fill(GREEN)
             plot_symbols()
-            screen.blit(text, (700, 40))      # Placar
-            screen.blit(points2, (810, 40))   # Pontuação
+            screen.blit(scoreboard, (715, 40))      # Placar
+            screen.blit(points2, (810, 40))         # Pontuação
             pygame.display.update()
             for event1 in pygame.event.get():
                 if event1.type == pygame.QUIT:
                     pygame.quit()
                 if event1.type == pygame.MOUSEBUTTONDOWN:
                     pos1 = pygame.mouse.get_pos()
-                    if 25 < pos1[0] < 175 and 400 < pos1[1] < 550:  # Opção errada
+                    if 25 < pos1[0] < 175 and 400 < pos1[1] < 550:   # Opção errada
                         score[1] -= 5  # Pontuação
                         print(score[1])
                         plot_blue()
@@ -93,15 +95,15 @@ def level2():
         while blue:
             screen.fill(BLUE)
             plot_symbols()
-            screen.blit(text, (700, 40))     # Placar
-            screen.blit(points3, (810, 40))  # Pontuação
+            screen.blit(scoreboard, (715, 40))     # Placar
+            screen.blit(points3, (810, 40))        # Pontuação
             pygame.display.update()
             for event2 in pygame.event.get():
                 if event2.type == pygame.QUIT:
                     pygame.quit()
                 if event2.type == pygame.MOUSEBUTTONDOWN:
                     pos2 = pygame.mouse.get_pos()
-                    if 25 < pos2[0] < 175 and 400 < pos2[1] < 550:  # Opção errada
+                    if 25 < pos2[0] < 175 and 400 < pos2[1] < 550:   # Opção errada
                         score[1] -= 5  # Pontuação
                         print(score[1])
                         plot_yellow()
@@ -134,15 +136,15 @@ def level2():
         while yellow:
             screen.fill(YELLOW)
             plot_symbols()
-            screen.blit(text, (700, 40))     # Placar
-            screen.blit(points4, (810, 40))  # Pontuação
+            screen.blit(scoreboard, (715, 40))     # Placar
+            screen.blit(points4, (810, 40))        # Pontuação
             pygame.display.update()
             for event3 in pygame.event.get():
                 if event3.type == pygame.QUIT:
                     pygame.quit()
                 if event3.type == pygame.MOUSEBUTTONDOWN:
                     pos3 = pygame.mouse.get_pos()
-                    if 25 < pos3[0] < 175 and 400 < pos3[1] < 550:  # Opção correta - metal
+                    if 25 < pos3[0] < 175 and 400 < pos3[1] < 550:   # Opção correta - metal
                         score[1] += 5  # Pontuação
                         print(score[1])
                         plot_brown()
@@ -175,15 +177,15 @@ def level2():
         while brown:
             screen.fill(BROWN)
             plot_symbols()
-            screen.blit(text, (700, 40))     # Placar
-            screen.blit(points5, (810, 40))  # Pontuação
+            screen.blit(scoreboard, (715, 40))     # Placar
+            screen.blit(points5, (810, 40))        # Pontuação
             pygame.display.update()
             for event4 in pygame.event.get():
                 if event4.type == pygame.QUIT:
                     pygame.quit()
                 if event4.type == pygame.MOUSEBUTTONDOWN:
                     pos4 = pygame.mouse.get_pos()
-                    if 25 < pos4[0] < 175 and 400 < pos4[1] < 550:  # Opção errada
+                    if 25 < pos4[0] < 175 and 400 < pos4[1] < 550:   # Opção errada
                         score[1] -= 5  # Pontuação
                         print(score[1])
                         end()
@@ -216,20 +218,20 @@ def level2():
         while end_level:
             screen.fill(BROWN)
             plot_symbols()
-            screen.blit(text, (700, 40))     # Placar
-            screen.blit(points6, (810, 40))  # Pontuação
+            screen.blit(scoreboard, (715, 40))     # Placar
+            screen.blit(points6, (810, 40))        # Pontuação
             pygame.display.update()
             for event5 in pygame.event.get():
                 if event5.type == pygame.QUIT:
                     pygame.quit()
-            pygame.time.delay(1500)
+            pygame.time.delay(1000)
             screen.fill(BLUE1)
-            screen.blit(text1, (290, 250))
-            screen.blit(text2, (225, 300))
+            screen.blit(text1, (305, 250))
+            screen.blit(text2, (250, 300))
             points6 = font1.render(pts6, True, WHITE)
-            screen.blit(points6, (560, 250))
+            screen.blit(points6, (550, 250))
             pygame.display.update()
-            pygame.time.delay(3000)
+            pygame.time.delay(2500)
             break
             # return score[1]
 
@@ -242,8 +244,8 @@ def level2():
                 pygame.quit()
             screen.fill(RED)
             plot_symbols()
-            screen.blit(text, (700, 40))     # Placar
-            screen.blit(points1, (810, 40))  # Pontuação
+            screen.blit(scoreboard, (715, 40))     # Placar
+            screen.blit(points1, (810, 40))        # Pontuação
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if 25 < pos[0] < 175 and 400 < pos[1] < 550:   # Opção errada
