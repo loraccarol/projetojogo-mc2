@@ -12,6 +12,9 @@ screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Nível 04 - Ar")
 
 # assets
+font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
+scoreboard = 0
+
 bg = pygame.image.load("level4/assets/space.jpg")
 
 spaceship = pygame.image.load("level4/assets/spaceship.png")
@@ -22,6 +25,18 @@ meteor = pygame.image.load("level4/assets/meteor.png")
 meteor = pygame.transform.scale(meteor, (40, 34))
 
 explosion = pygame.image.load("level4/assets/explosao.png")
+
+rocket = pygame.image.load("level4/assets/rocket.png")
+rocket = pygame.transform.scale(rocket, (50, 50))
+rocket_rect = rocket.get_rect()
+
+satellite = pygame.image.load("level4/assets/satellite.png")
+satellite = pygame.transform.scale(satellite, (45, 45))
+satellite_rect = satellite.get_rect()
+
+tool = pygame.image.load("level4/assets/tool.png")
+tool = pygame.transform.scale(tool, (30, 30))
+tool_rect = tool.get_rect()
 
 def get_frame (gId, columns, height, width, space_h, space_v, margin, top):
     global explosion
@@ -39,12 +54,31 @@ move = True
 
 meteor_list = []
 
-for i in range(25):
+for i in range(20):
     meteor_rect = meteor.get_rect()
     meteor_rect.x = random.randrange(0, screen_w)
     meteor_rect.y = random.randrange(-1000, 10)
     meteor_list.append(meteor_rect)
-    fps = pygame.time.Clock()   
+    fps = pygame.time.Clock()
+
+rockets = []
+satellites = []
+tools = []
+for i in range(10):
+    rocket_rect = rocket.get_rect()
+    rocket_rect.x = random.randrange(0, screen_w)
+    rocket_rect.y = random.randrange(0, screen_h - 100)
+    rockets.append(rocket_rect)
+
+    satellite_rect = rocket.get_rect()
+    satellite_rect.x = random.randrange(0, screen_w)
+    satellite_rect.y = random.randrange(0, screen_h - 100)
+    satellites.append(satellite_rect)
+
+    tool_rect = rocket.get_rect()
+    tool_rect.x = random.randrange(0, screen_w)
+    tool_rect.y = random.randrange(0, screen_h - 100)
+    tools.append(tool_rect)
 
 vel = 10
 spaceship_rect.x = 260
@@ -53,8 +87,10 @@ spaceship_rect.y = 140
 done = False
 while not done:
 
+    current_time = pygame.time.get_ticks()
+
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or current_time > 30000:
             pygame.quit()
 
     screen.blit(bg, (0, 0))
@@ -83,6 +119,25 @@ while not done:
     if spaceship_rect.y > screen_h - 50:
         spaceship_rect.y = screen_h - 50
 
+    for i in rockets:
+        screen.blit(rocket, i)
+    for i in satellites:
+        screen.blit(satellite, i)
+    for i in tools:
+        screen.blit(tool, i)
+
+    if spaceship_rect.collidelist(rockets) >= 0:
+        rockets.pop(spaceship_rect.collidelist(rockets))
+        scoreboard = scoreboard + 1
+        
+    if spaceship_rect.collidelist(satellites) >= 0:
+        satellites.pop(spaceship_rect.collidelist(satellites))
+        scoreboard = scoreboard + 1
+
+    if spaceship_rect.collidelist(tools) >= 0:
+        tools.pop(spaceship_rect.collidelist(tools))
+        scoreboard = scoreboard + 1
+               
     for i in range(len(meteor_list)):
         screen.blit(meteor, meteor_list[i])
 
@@ -99,10 +154,12 @@ while not done:
             if move:
                 initial_frame = initial_frame + 1
             if initial_frame >= len(frame_list):
-                initial_frame = 0
+                initial_frame = 1
+            scoreboard = scoreboard - 1
             screen.blit(frame, (spaceship_rect.x, spaceship_rect.y))
+
+    score = font.render('PLACAR: ' + str(scoreboard), True, (255, 255, 255))
+    screen.blit(score, (600, 50))
 
     pygame.display.update()
     fps.tick(25)
-
-pygame.quit()
