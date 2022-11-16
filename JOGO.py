@@ -1,20 +1,21 @@
 from time import sleep
 import pygame
 
-#import introduction.introGame
-#import introduction.introLevel1
-#import introduction.introLevel2
-#import level2.terra
-#import introduction.introLevel3
+import introduction.introGame
+import introduction.introLevel1
+import level1.level1
+import introduction.introLevel2
+import level2.terra
+import introduction.introLevel3
 import level3.fogo
-#import introduction.introLevel4
+import introduction.introLevel4
 import level4.ar
 
 pygame.init()
 
 
 def level1():
-    pass
+    level1.level1
 
 
 def level2():
@@ -34,6 +35,7 @@ def main():
     sleep(1)
     introduction.introLevel1
     sleep(1)
+    level1()
     introduction.introLevel2
     level2()
     introduction.introLevel3

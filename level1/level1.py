@@ -12,7 +12,7 @@ pygame.display.set_caption("Default")
 
 
 def level1():
-    background = pygame.image.load("assets/ocean.png")
+    background = pygame.image.load("level1/assets/ocean.png")
     background = pygame.transform.scale(background, SIZE)
 
     janela = pygame.display.set_mode((900, 600))
@@ -22,7 +22,7 @@ def level1():
     class Player(pygame.sprite.Sprite):
         def __init__(self):
             super().__init__()
-            self.image = pygame.image.load("assets/mergulhador.png")
+            self.image = pygame.image.load("level1/assets/mergulhador.png")
             self.image = pygame.transform.scale(self.image, (340, 180))
             self.rect = self.image.get_rect()
             self.placar = 0
@@ -66,7 +66,7 @@ def level1():
     class Canudo(pygame.sprite.Sprite):
         def __init__(self):
             super().__init__()
-            self.image = pygame.image.load("assets/canudo.png")
+            self.image = pygame.image.load("level1/assets/canudo.png")
             self.image = pygame.transform.scale(self.image, (80, 50))
             self.rect = self.image.get_rect(
                 center=(
