@@ -84,6 +84,23 @@ vel = 10
 spaceship_rect.x = 260
 spaceship_rect.y = 140
 
+
+def end():
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    BLUE = (102, 153, 255)
+    font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
+    text1 = font1.render("Pontuação final: ", True, WHITE)
+    text2 = font1.render("Obrigada por jogar com a gente  =)", True, BLACK)
+    screen.fill(BLUE)
+    screen.blit(text1, (305, 250))
+    screen.blit(text2, (250, 300))
+    #points6 = font1.render(pts6, True, WHITE)
+    #screen.blit(points6, (550, 250))
+    pygame.display.update()
+    pygame.time.delay(2500)
+
+
 done = False
 while not done:
 
@@ -91,6 +108,7 @@ while not done:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT or current_time > 30000:
+            end()
             pygame.quit()
 
     screen.blit(bg, (0, 0))
