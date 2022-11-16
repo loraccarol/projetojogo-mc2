@@ -85,8 +85,6 @@ def level1():
                 self.kill()
             if self.rect.colliderect(player.rect):
                 player.placar += 1
-                if player.placar == 50:
-                    pygame.quit()
                 self.kill()
 
     ADDCANUDO = pygame.USEREVENT + 1
@@ -103,7 +101,7 @@ def level1():
         clock.tick(20)
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                jogoAtivo = False
+                pygame.quit()
 
             elif evento.type == ADDCANUDO:
                 new_canudo = Canudo()
@@ -116,6 +114,8 @@ def level1():
         for ponto in canudos:
             ponto.update(player)
             ponto.render(janela)
+            if player.placar == 50:
+                jogoAtivo = False
         score = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
         janela.blit(score, (600, 50))
         canudos.update(player)
