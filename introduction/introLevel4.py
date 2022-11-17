@@ -1,5 +1,8 @@
 import pygame
 
+import level3.fogo
+import music.playMusic
+
 pygame.init()
 
 # Screen
@@ -47,6 +50,12 @@ end = font3.render("pressione a tecla S para continuar", True, BLACK)
 lucia = pygame.image.load("level4/assets/lucia.png")
 lucia = pygame.transform.scale(lucia, (200, 200))
 
+# Music
+song = level3.fogo.song
+if song:
+    pygame.mixer.music.load("music/ar_musica.mp3")
+    pygame.mixer.music.play(-1)
+
 screen.fill(BEIGE)
 screen.blit(air, (365, 250))
 pygame.display.update()
@@ -56,6 +65,13 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
+            if song:
+                song = music.playMusic.music_off()
+            else:
+                pygame.mixer.music.load("music/ar_musica.mp3")
+                pygame.mixer.music.play(-1)
+                song = music.playMusic.music_on()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
             done = True
         screen.fill(BLUE1)

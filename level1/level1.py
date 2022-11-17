@@ -133,7 +133,7 @@ def level1():
         for ponto in canudos:
             ponto.update(player)
             ponto.render(janela)
-            if player.placar == 50:
+            if player.placar == 5:
                 jogoAtivo = False
         score = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
         janela.blit(score, (600, 50))

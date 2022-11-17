@@ -2,6 +2,9 @@ from time import sleep
 import pygame
 import random
 
+import introduction.introLevel4
+import music.playMusic
+
 pygame.init()
 
 # Screen
@@ -9,10 +12,12 @@ screen_w = 900
 screen_h = 600
 SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("Nível 04 - Ar")
+pygame.display.set_caption("NÍVEL 4 - AR")
 
 # assets
 font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
+font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
+textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
 scoreboard = 0
 
 bg = pygame.image.load("level4/assets/space.jpg")
@@ -38,7 +43,14 @@ tool = pygame.image.load("level4/assets/tool.png")
 tool = pygame.transform.scale(tool, (30, 30))
 tool_rect = tool.get_rect()
 
-def get_frame (gId, columns, height, width, space_h, space_v, margin, top):
+# Music
+song = introduction.introLevel4.song
+if song:
+    pygame.mixer.music.load("music/ar_musica.mp3")
+    pygame.mixer.music.play(-1)
+
+
+def get_frame(gId, columns, height, width, space_h, space_v, margin, top):
     global explosion
     linha = gId // columns #linha onde se encontra o frame desejado
     coluna = gId % columns #coluna onde se encontra o frame desejado
@@ -46,6 +58,7 @@ def get_frame (gId, columns, height, width, space_h, space_v, margin, top):
     y = (linha * (height + space_v)) + top
     
     return explosion.subsurface(pygame.Rect((x,y),(width,height)))
+
 
 list = [0, 1, 2, 3, 4, 5, 6]
 frame_list = list
@@ -86,6 +99,7 @@ spaceship_rect.y = 140
 
 
 def end():
+    global song
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     BLUE = (102, 153, 255)
@@ -110,6 +124,13 @@ while not done:
         if event.type == pygame.QUIT or current_time > 30000:
             end()
             pygame.quit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
+            if song:
+                song = music.playMusic.music_off()
+            else:
+                pygame.mixer.music.load("music/ar_musica.mp3")
+                pygame.mixer.music.play(-1)
+                song = music.playMusic.music_on()
 
     screen.blit(bg, (0, 0))
     screen.blit(spaceship, spaceship_rect)
@@ -178,6 +199,7 @@ while not done:
 
     score = font.render('PLACAR: ' + str(scoreboard), True, (255, 255, 255))
     screen.blit(score, (600, 50))
+    screen.blit(textMusic, (10, 10))
 
     pygame.display.update()
     fps.tick(25)
