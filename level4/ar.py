@@ -94,7 +94,7 @@ def end():
     text2 = font1.render("Obrigada por jogar com a gente  =)", True, BLACK)
     screen.fill(BLUE)
     screen.blit(text1, (305, 250))
-    screen.blit(text2, (250, 300))
+    screen.blit(text2, (205, 300))
     #points6 = font1.render(pts6, True, WHITE)
     #screen.blit(points6, (550, 250))
     pygame.display.update()

@@ -9,7 +9,7 @@ screen_w = 900
 screen_h = 600
 SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("ELEMENTS GAME")
+pygame.display.set_caption("ELEMENTS - MENU")
 
 score = [0, 0, 0, 0]
 
@@ -45,6 +45,8 @@ rebeca = pygame.image.load("level2/assets/rebeca.png")
 rebeca = pygame.transform.scale(rebeca, (200, 200))
 lucia = pygame.image.load("level4/assets/lucia.png")
 lucia = pygame.transform.scale(lucia, (200, 200))
+sol = pygame.image.load("introduction/assets/sol.png")
+sol = pygame.transform.scale(sol, (120, 188))
 
 # Music
 pygame.mixer.music.load("music/411165__inspectorj__piano-bach-fantasia-a-h6-ms.mp3")
@@ -88,6 +90,7 @@ while startAnimals:
     screen.blit(oliver, (225, 35))
     screen.blit(rebeca, (445, 35))
     screen.blit(lucia, (670, 47))
+    screen.blit(sol, (55, 370))
     screen.blit(intro1, (65, 280))
     screen.blit(intro2, (115, 320))
     screen.blit(intro3, (220, 360))

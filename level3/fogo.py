@@ -10,15 +10,24 @@ screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("NÍVEL 3 - FOGO")
 
 # Colors
-BLACK = (255, 255, 255)
+BLUE = (102, 153, 255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 
 # Fonts
 font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
+font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
 
 # Texts
-textMusic = font_music.render("M = music on/off", True, BLACK)
-scoreboard = font.render("Placar:", True, BLACK)
+textMusic = font_music.render("M = music on/off", True, BLUE, 1)
+scoreboard = font.render("Placar:", True, BLUE, 1)
+text1 = font1.render("Pontuação final: ", True, WHITE)
+text2 = font1.render("Siga para o próximo nível  =)", True, BLACK)
+text_end = font1.render("Parabéns, você recolheu todos os lixos eletrônicos !", True, BLUE, 1)
+
+# Score
+score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
 
 # Images
 sprite = pygame.image.load("level3/assets/sprite.png")
@@ -64,10 +73,38 @@ tennisGrey = pygame.transform.scale(tennisGrey, (200, 200))
 toaster = pygame.image.load("level3/assets/toaster.png")
 toaster = pygame.transform.scale(toaster, (200, 200))
 toasterGrey = pygame.image.load("level3/assets/toasterGrey.png")
-toasterGrey = pygame.transform.scale(appleGrey, (200, 200))
+toasterGrey = pygame.transform.scale(toasterGrey, (200, 200))
 
 trashA = [lamp, phone, apple, note]
 trashB = [tennis, drawer, bottle, toaster]
+
+
+def plot_trash():
+    x_a = 40
+    for i in range(len(trashA)):
+        screen.blit(trashA[i], (x_a, 80))
+        x_a += 200
+    x_b = 40
+    for i in range(len(trashB)):
+        screen.blit(trashB[i], (x_b, 350))
+        x_b += 200
+
+
+def end(pts_end):
+    pygame.time.delay(2500)
+    end_level = True
+    while end_level:
+        for event_end in pygame.event.get():
+            if event_end.type == pygame.QUIT:
+                pygame.quit()
+        screen.fill(BLUE)
+        screen.blit(text1, (305, 250))
+        screen.blit(text2, (250, 300))
+        points_end = font1.render(pts_end, True, WHITE)
+        screen.blit(points_end, (550, 250))
+        pygame.display.update()
+        pygame.time.delay(2500)
+        break
 
 
 def get_frame(gId, colunas, altura, largura, espaco_h, espaco_v, margem, topo):
@@ -94,24 +131,14 @@ x = 50
 y = 55
 limit = ''
 
-
-def plot_trash():
-    x_a = 40
-    for i in range(len(trashA)):
-        screen.blit(trashA[i], (x_a, 80))
-        x_a += 200
-    x_b = 40
-    for i in range(len(trashB)):
-        screen.blit(trashB[i], (x_b, 350))
-        x_b += 200
-
-
+pts = str(score[2])
+points = font.render(pts, True, BLUE, 1)
+count = 0
 levelActive = True
 while levelActive:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            levelActive = False
-            #pygame.quit()
+            pygame.quit()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT or pygame.K_LEFT or pygame.K_UP or pygame.K_DOWN:
                 mover = False
@@ -137,10 +164,6 @@ while levelActive:
         y -= vel
         listaQuadros = listaTop
 
-    screen.blit(background, (0, 0))
-    screen.blit(textMusic, (10, 10))
-    screen.blit(scoreboard, (730, 15))
-
     g_id = listaQuadros[quadro]
     frame = get_frame(g_id, 5, 40, 40, 0, 0, 0, 0)
     if mover:
@@ -157,14 +180,74 @@ while levelActive:
     if limit == 'down' and y >= 560:
         y = 560
 
+    screen.blit(background, (0, 0))
+    screen.blit(textMusic, (10, 10))
+    screen.blit(scoreboard, (730, 15))
     screen.blit(frame, (x, y))
 
+    # Alteração nas imagens dos lixos e pontuação
     if 80 < x < 200 and 89 < y < 272 and trashA[0] == lamp:
-        print("oi")
+        count += 1
+        score[2] += 10  # Ganha 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
         trashA.remove(lamp)
         trashA.insert(0, lampGrey)
+    if 320 < x < 438 and 80 < y < 260 and trashA[1] == phone:
+        count += 1
+        score[2] += 10  # Ganha 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashA.remove(phone)
+        trashA.insert(1, phoneGrey)
+    if 505 < x < 590 and 123 < y < 260 and trashA[2] == apple:
+        score[2] -= 10  # Perde 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashA.remove(apple)
+        trashA.insert(2, appleGrey)
+    if 670 < x < 810 and 125 < y < 230 and trashA[3] == note:
+        count += 1
+        score[2] += 10  # Ganha 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashA.remove(note)
+        trashA.insert(3, noteGrey)
+    if 50 < x < 227 and 425 < y < 512 and trashB[0] == tennis:
+        score[2] -= 10  # Perde 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashB.remove(tennis)
+        trashB.insert(0, tennisGrey)
+    if 290 < x < 392 and 362 < y < 528 and trashB[1] == drawer:
+        count += 1
+        score[2] += 10  # Ganha 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashB.remove(drawer)
+        trashB.insert(1, drawerGrey)
+    if 510 < x < 568 and 390 < y < 536 and trashB[2] == bottle:
+        score[2] -= 10  # Perde 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashB.remove(bottle)
+        trashB.insert(2, bottleGrey)
+    if 703 < x < 773 and 397 < y < 517 and trashB[3] == toaster:
+        count += 1
+        score[2] += 10  # Ganha 10 pontos
+        pts = str(score[2])
+        points = font.render(pts, True, BLUE, 1)
+        trashB.remove(toaster)
+        trashB.insert(3, toasterGrey)
+    if count >= 5:  # Contador para sair do nível
+        screen.blit(background, (0, 0))
+        screen.blit(text_end, (80, 280))
+        pygame.display.update()
+        end(pts)
+        break
 
     plot_trash()
+    screen.blit(points, (830, 15))
     pygame.display.update()
     fps.tick(15)
 
