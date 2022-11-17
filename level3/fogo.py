@@ -209,60 +209,139 @@ while levelActive:
     screen.blit(scoreboard, (730, 15))
     screen.blit(frame, (x, y))
 
-    # Alteração nas imagens dos lixos e pontuação
-    if 80 < x < 200 and 89 < y < 272 and trashA[0] == lamp:
+    if 80 < x < 200 and 89 < y < 272 and trashA[0] == lamp:  # Alteração nos lixos e pontuação
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(500)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         count += 1
         score[2] += 10  # Ganha 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashA.remove(lamp)
         trashA.insert(0, lampGrey)
+
     if 320 < x < 438 and 80 < y < 260 and trashA[1] == phone:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         count += 1
         score[2] += 10  # Ganha 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashA.remove(phone)
         trashA.insert(1, phoneGrey)
+
     if 505 < x < 590 and 123 < y < 260 and trashA[2] == apple:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         score[2] -= 10  # Perde 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashA.remove(apple)
         trashA.insert(2, appleGrey)
+
     if 670 < x < 810 and 125 < y < 230 and trashA[3] == note:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         count += 1
         score[2] += 10  # Ganha 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashA.remove(note)
         trashA.insert(3, noteGrey)
+
     if 50 < x < 227 and 425 < y < 512 and trashB[0] == tennis:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         score[2] -= 10  # Perde 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashB.remove(tennis)
         trashB.insert(0, tennisGrey)
+
     if 290 < x < 392 and 362 < y < 528 and trashB[1] == drawer:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         count += 1
         score[2] += 10  # Ganha 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashB.remove(drawer)
         trashB.insert(1, drawerGrey)
+
     if 510 < x < 568 and 390 < y < 536 and trashB[2] == bottle:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         score[2] -= 10  # Perde 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashB.remove(bottle)
         trashB.insert(2, bottleGrey)
+
     if 703 < x < 773 and 397 < y < 517 and trashB[3] == toaster:
+        pygame.mixer.music.load("music/efeitoSonoro_fogo.mp3")
+        pygame.mixer.music.play(0)
+        pygame.time.delay(400)
+        if song:
+            pygame.mixer.music.load("music/fogo_musica.mp3")
+            pygame.mixer.music.play(-1)
+            song = music.playMusic.music_on()
+        else:
+            song = music.playMusic.music_off()
         count += 1
         score[2] += 10  # Ganha 10 pontos
         pts = str(score[2])
         points = font.render(pts, True, BLUE, 1)
         trashB.remove(toaster)
         trashB.insert(3, toasterGrey)
+
     if count >= 5:  # Contador para sair do nível
         screen.blit(background, (0, 0))
         screen.blit(text_end, (80, 280))

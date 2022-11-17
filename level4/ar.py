@@ -17,7 +17,7 @@ pygame.display.set_caption("NÍVEL 4 - AR")
 # assets
 font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
 font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
-textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
+textMusic = font_music.render("M = music on/off", True, (255, 255, 255), 1)
 scoreboard = 0
 
 bg = pygame.image.load("level4/assets/space.jpg")
