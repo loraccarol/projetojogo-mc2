@@ -13,6 +13,9 @@ SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Default")
 
+# Score
+score = [0, 0, 0, 0]
+
 # Music
 song = introduction.introLevel1.song
 if song:
@@ -133,10 +136,11 @@ def level1():
         for ponto in canudos:
             ponto.update(player)
             ponto.render(janela)
-            if player.placar == 5:
+            if player.placar == 25:
+                score[0] = player.placar
                 jogoAtivo = False
-        score = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
-        janela.blit(score, (600, 50))
+        points = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
+        janela.blit(points, (600, 50))
         textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
         janela.blit(textMusic, (10, 10))
         canudos.update(player)
@@ -152,8 +156,24 @@ def level1():
         pygame.display.flip()
 
 
+def end():
+    global song
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    BLUE = (102, 153, 255)
+    font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
+    text1 = font1.render("Pontuação final: " + str(score[0]), True, WHITE)
+    text2 = font1.render("Siga para o próximo nível  =)", True, BLACK)
+    screen.fill(BLUE)
+    screen.blit(text1, (305, 250))
+    screen.blit(text2, (250, 300))
+    pygame.display.update()
+    pygame.time.delay(2500)
+
+
 def main():
     level1()
+    end()
 
 
 main()
