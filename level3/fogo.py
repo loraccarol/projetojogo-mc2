@@ -1,5 +1,8 @@
 import pygame
 
+import introduction.introLevel3
+import music.playMusic
+
 pygame.init()
 
 # Screen
@@ -78,6 +81,12 @@ toasterGrey = pygame.transform.scale(toasterGrey, (200, 200))
 trashA = [lamp, phone, apple, note]
 trashB = [tennis, drawer, bottle, toaster]
 
+# Music
+song = introduction.introLevel3.song
+if song:
+    pygame.mixer.music.load("music/fogo_musica.mp3")
+    pygame.mixer.music.play(-1)
+
 
 def plot_trash():
     x_a = 40
@@ -91,12 +100,20 @@ def plot_trash():
 
 
 def end(pts_end):
+    global song
     pygame.time.delay(2500)
     end_level = True
     while end_level:
         for event_end in pygame.event.get():
             if event_end.type == pygame.QUIT:
                 pygame.quit()
+            if event_end.type == pygame.KEYDOWN and event_end.key == pygame.K_m:
+                if song:
+                    song = music.playMusic.music_off()
+                else:
+                    pygame.mixer.music.load("music/fogo_musica.mp3")
+                    pygame.mixer.music.play(-1)
+                    song = music.playMusic.music_on()
         screen.fill(BLUE)
         screen.blit(text1, (305, 250))
         screen.blit(text2, (250, 300))
@@ -139,6 +156,13 @@ while levelActive:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
+            if song:
+                song = music.playMusic.music_off()
+            else:
+                pygame.mixer.music.load("music/fogo_musica.mp3")
+                pygame.mixer.music.play(-1)
+                song = music.playMusic.music_on()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT or pygame.K_LEFT or pygame.K_UP or pygame.K_DOWN:
                 mover = False

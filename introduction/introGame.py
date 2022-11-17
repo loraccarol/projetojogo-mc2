@@ -58,7 +58,7 @@ while startGame:
     for event1 in pygame.event.get():
         if event1.type == pygame.QUIT:
             pygame.quit()
-        if event1.type == pygame.KEYUP and event1.key == pygame.K_m:
+        if event1.type == pygame.KEYDOWN and event1.key == pygame.K_m:
             if song:
                 song = music.playMusic.music_off()
             else:
@@ -77,7 +77,7 @@ while startAnimals:
     for event2 in pygame.event.get():
         if event2.type == pygame.QUIT:
             pygame.quit()
-        if event2.type == pygame.KEYUP and event2.key == pygame.K_m:
+        if event2.type == pygame.KEYDOWN and event2.key == pygame.K_m:
             if song:
                 song = music.playMusic.music_off()
             else:

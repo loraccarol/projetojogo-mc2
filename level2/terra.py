@@ -1,5 +1,8 @@
 import pygame
 
+import introduction.introLevel2
+import music.playMusic
+
 pygame.init()
 
 # Screen
@@ -22,9 +25,11 @@ WHITE = (255, 255, 255)
 # Fonts
 font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
 font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
+font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 
 # Texts
 scoreboard = font.render("Placar:", True, BLACK)
+textMusic = font_music.render("M = music on/off", True, BLACK)
 text1 = font1.render("Pontuação final: ", True, WHITE)
 text2 = font1.render("Siga para o próximo nível  =)", True, BLACK)
 
@@ -39,6 +44,12 @@ images = (metal, plastic, organic, paper, glass)
 # Score
 score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
 
+# Music
+song = introduction.introLevel2.song
+if song:
+    pygame.mixer.music.load("music/terra_musica.mp3")
+    pygame.mixer.music.play(-1)
+
 
 def level2():
     def plot_symbols():
@@ -48,18 +59,27 @@ def level2():
             firstPosition += 175
 
     def plot_green():
+        global song
         pts2 = str(score[1])
         points2 = font.render(pts2, True, BLACK)
         green = True
         while green:
             screen.fill(GREEN)
             plot_symbols()
+            screen.blit(textMusic, (10, 10))
             screen.blit(scoreboard, (715, 40))      # Placar
             screen.blit(points2, (810, 40))         # Pontuação
             pygame.display.update()
             for event1 in pygame.event.get():
                 if event1.type == pygame.QUIT:
                     pygame.quit()
+                if event1.type == pygame.KEYDOWN and event1.key == pygame.K_m:
+                    if song:
+                        song = music.playMusic.music_off()
+                    else:
+                        pygame.mixer.music.load("music/terra_musica.mp3")
+                        pygame.mixer.music.play(-1)
+                        song = music.playMusic.music_on()
                 if event1.type == pygame.MOUSEBUTTONDOWN:
                     pos1 = pygame.mouse.get_pos()
                     if 25 < pos1[0] < 175 and 400 < pos1[1] < 550:   # Opção errada
@@ -89,18 +109,27 @@ def level2():
                         green = False
 
     def plot_blue():
+        global song
         pts3 = str(score[1])
         points3 = font.render(pts3, True, BLACK)
         blue = True
         while blue:
             screen.fill(BLUE)
             plot_symbols()
+            screen.blit(textMusic, (10, 10))
             screen.blit(scoreboard, (715, 40))     # Placar
             screen.blit(points3, (810, 40))        # Pontuação
             pygame.display.update()
             for event2 in pygame.event.get():
                 if event2.type == pygame.QUIT:
                     pygame.quit()
+                if event2.type == pygame.KEYDOWN and event2.key == pygame.K_m:
+                    if song:
+                        song = music.playMusic.music_off()
+                    else:
+                        pygame.mixer.music.load("music/terra_musica.mp3")
+                        pygame.mixer.music.play(-1)
+                        song = music.playMusic.music_on()
                 if event2.type == pygame.MOUSEBUTTONDOWN:
                     pos2 = pygame.mouse.get_pos()
                     if 25 < pos2[0] < 175 and 400 < pos2[1] < 550:   # Opção errada
@@ -130,18 +159,27 @@ def level2():
                         blue = False
 
     def plot_yellow():
+        global song
         pts4 = str(score[1])
         points4 = font.render(pts4, True, BLACK)
         yellow = True
         while yellow:
             screen.fill(YELLOW)
             plot_symbols()
+            screen.blit(textMusic, (10, 10))
             screen.blit(scoreboard, (715, 40))     # Placar
             screen.blit(points4, (810, 40))        # Pontuação
             pygame.display.update()
             for event3 in pygame.event.get():
                 if event3.type == pygame.QUIT:
                     pygame.quit()
+                if event3.type == pygame.KEYDOWN and event3.key == pygame.K_m:
+                    if song:
+                        song = music.playMusic.music_off()
+                    else:
+                        pygame.mixer.music.load("music/terra_musica.mp3")
+                        pygame.mixer.music.play(-1)
+                        song = music.playMusic.music_on()
                 if event3.type == pygame.MOUSEBUTTONDOWN:
                     pos3 = pygame.mouse.get_pos()
                     if 25 < pos3[0] < 175 and 400 < pos3[1] < 550:   # Opção correta - metal
@@ -171,18 +209,27 @@ def level2():
                         yellow = False
 
     def plot_brown():
+        global song
         pts5 = str(score[1])
         points5 = font.render(pts5, True, BLACK)
         brown = True
         while brown:
             screen.fill(BROWN)
             plot_symbols()
+            screen.blit(textMusic, (10, 10))
             screen.blit(scoreboard, (715, 40))     # Placar
             screen.blit(points5, (810, 40))        # Pontuação
             pygame.display.update()
             for event4 in pygame.event.get():
                 if event4.type == pygame.QUIT:
                     pygame.quit()
+                if event4.type == pygame.KEYDOWN and event4.key == pygame.K_m:
+                    if song:
+                        song = music.playMusic.music_off()
+                    else:
+                        pygame.mixer.music.load("music/terra_musica.mp3")
+                        pygame.mixer.music.play(-1)
+                        song = music.playMusic.music_on()
                 if event4.type == pygame.MOUSEBUTTONDOWN:
                     pos4 = pygame.mouse.get_pos()
                     if 25 < pos4[0] < 175 and 400 < pos4[1] < 550:   # Opção errada
@@ -212,18 +259,27 @@ def level2():
                         brown = False
 
     def end():
+        global song
         pts6 = str(score[1])
         points6 = font.render(pts6, True, (0, 0, 0))
         end_level = True
         while end_level:
             screen.fill(BROWN)
             plot_symbols()
+            screen.blit(textMusic, (10, 10))
             screen.blit(scoreboard, (715, 40))     # Placar
             screen.blit(points6, (810, 40))        # Pontuação
             pygame.display.update()
             for event5 in pygame.event.get():
                 if event5.type == pygame.QUIT:
                     pygame.quit()
+                if event5.type == pygame.KEYDOWN and event5.key == pygame.K_m:
+                    if song:
+                        song = music.playMusic.music_off()
+                    else:
+                        pygame.mixer.music.load("music/terra_musica.mp3")
+                        pygame.mixer.music.play(-1)
+                        song = music.playMusic.music_on()
             pygame.time.delay(1000)
             screen.fill(BLUE1)
             screen.blit(text1, (305, 250))
@@ -235,6 +291,7 @@ def level2():
             break
             # return score[1]
 
+    global song
     pts1 = str(score[1])
     points1 = font.render(pts1, True, BLACK)
     levelActive = True
@@ -242,8 +299,16 @@ def level2():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
+                if song:
+                    song = music.playMusic.music_off()
+                else:
+                    pygame.mixer.music.load("music/terra_musica.mp3")
+                    pygame.mixer.music.play(-1)
+                    song = music.playMusic.music_on()
             screen.fill(RED)
             plot_symbols()
+            screen.blit(textMusic, (10, 10))
             screen.blit(scoreboard, (715, 40))     # Placar
             screen.blit(points1, (810, 40))        # Pontuação
             if event.type == pygame.MOUSEBUTTONDOWN:

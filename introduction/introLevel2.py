@@ -1,5 +1,8 @@
 import pygame
 
+import level1.level1
+import music.playMusic
+
 pygame.init()
 
 # Screen
@@ -46,6 +49,12 @@ end = font3.render("pressione a tecla S para continuar", True, BLACK)
 rebeca = pygame.image.load("level2/assets/rebeca.png")
 rebeca = pygame.transform.scale(rebeca, (200, 200))
 
+# Music
+song = level1.level1.song
+if song:
+    pygame.mixer.music.load("music/terra_musica.mp3")
+    pygame.mixer.music.play(-1)
+
 screen.fill(BEIGE)
 screen.blit(earth, (280, 250))
 pygame.display.update()
@@ -55,6 +64,13 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
+            if song:
+                song = music.playMusic.music_off()
+            else:
+                pygame.mixer.music.load("music/terra_musica.mp3")
+                pygame.mixer.music.play(-1)
+                song = music.playMusic.music_on()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
             done = True
         screen.fill(BLUE1)

@@ -1,6 +1,9 @@
 import pygame
 import random
 
+import introduction.introLevel1
+import music.playMusic
+
 pygame.init()
 
 # Screen
@@ -10,14 +13,21 @@ SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Default")
 
+# Music
+song = introduction.introLevel1.song
+if song:
+    pygame.mixer.music.load("music/agua_musica.mp3")
+    pygame.mixer.music.play(-1)
+
 
 def level1():
     background = pygame.image.load("level1/assets/ocean.png")
     background = pygame.transform.scale(background, SIZE)
 
     janela = pygame.display.set_mode((900, 600))
-    pygame.display.set_caption('Pontos')
+    pygame.display.set_caption('NÍVEL 1 - ÁGUA')
     font = pygame.font.SysFont('sans', 40)
+    font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 
     class Player(pygame.sprite.Sprite):
         def __init__(self):
@@ -94,6 +104,7 @@ def level1():
     all_sprites = pygame.sprite.Group()
     all_sprites.add(player)
 
+    global song
     clock = pygame.time.Clock()
     jogoAtivo = True
     while jogoAtivo:
@@ -102,6 +113,14 @@ def level1():
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
+
+            if evento.type == pygame.KEYDOWN and evento.key == pygame.K_m:
+                if song:
+                    song = music.playMusic.music_off()
+                else:
+                    pygame.mixer.music.load("music/agua_musica.mp3")
+                    pygame.mixer.music.play(-1)
+                    song = music.playMusic.music_on()
 
             elif evento.type == ADDCANUDO:
                 new_canudo = Canudo()
@@ -118,6 +137,8 @@ def level1():
                 jogoAtivo = False
         score = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
         janela.blit(score, (600, 50))
+        textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
+        janela.blit(textMusic, (10, 10))
         canudos.update(player)
 
         # gid = player.listaQuadros[player.quadro]
