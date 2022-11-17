@@ -53,7 +53,7 @@ crush = pygame.transform.scale(crush, (200, 200))
 # Music
 song = introduction.introGame.song
 if song:
-    pygame.mixer.music.load("music/411165__inspectorj__piano-bach-fantasia-a-h6-ms.mp3")
+    pygame.mixer.music.load("music/menu_musica.mp3")
     pygame.mixer.music.play(-1)
 
 screen.fill(BEIGE)
@@ -69,7 +69,7 @@ while not done:
             if song:
                 song = music.playMusic.music_off()
             else:
-                pygame.mixer.music.load("music/411165__inspectorj__piano-bach-fantasia-a-h6-ms.mp3")
+                pygame.mixer.music.load("music/menu_musica.mp3")
                 pygame.mixer.music.play(-1)
                 song = music.playMusic.music_on()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s:

@@ -49,7 +49,7 @@ sol = pygame.image.load("introduction/assets/sol.png")
 sol = pygame.transform.scale(sol, (120, 188))
 
 # Music
-pygame.mixer.music.load("music/411165__inspectorj__piano-bach-fantasia-a-h6-ms.mp3")
+pygame.mixer.music.load("music/menu_musica.mp3")
 pygame.mixer.music.play(-1)
 song = True
 
