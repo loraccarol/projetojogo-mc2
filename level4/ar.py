@@ -2,6 +2,7 @@ from time import sleep
 import pygame
 import random
 
+import level3.fogo
 import introduction.introLevel4
 import music.playMusic
 
@@ -19,6 +20,8 @@ font = pygame.font.SysFont("twcen", 30, bold=False, italic=False)
 font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 textMusic = font_music.render("M = music on/off", True, (255, 255, 255), 1)
 scoreboard = 0
+
+score = level3.fogo.score
 
 bg = pygame.image.load("level4/assets/space.jpg")
 
@@ -100,15 +103,21 @@ spaceship_rect.y = 140
 
 def end():
     global song
+    score[3] = scoreboard
+    finalScore = 0
+    for x in range(len(score)):
+        finalScore += score[x]
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     BLUE = (102, 153, 255)
     font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
     text1 = font1.render("Pontuação final: " + str(scoreboard), True, WHITE)
     text2 = font1.render("Obrigada por jogar com a gente  =)", True, BLACK)
+    text3 = font1.render("VOCÊ CONQUISTOU UM TOTAL DE " + str(finalScore) + " PONTOS!", True, BLACK)
     screen.fill(BLUE)
     screen.blit(text1, (305, 250))
     screen.blit(text2, (205, 300))
+    screen.blit(text3, (70, 500))
     pygame.display.update()
     pygame.time.delay(2500)
 
@@ -195,8 +204,8 @@ while not done:
             scoreboard = scoreboard - 1
             screen.blit(frame, (spaceship_rect.x, spaceship_rect.y))
 
-    score = font.render('PLACAR: ' + str(scoreboard), True, (255, 255, 255))
-    screen.blit(score, (600, 50))
+    scoreAir = font.render('PLACAR: ' + str(scoreboard), True, (255, 255, 255))
+    screen.blit(scoreAir, (600, 50))
     screen.blit(textMusic, (10, 10))
 
     pygame.display.update()

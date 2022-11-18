@@ -1,5 +1,6 @@
 import pygame
 
+import level2.terra
 import introduction.introLevel3
 import music.playMusic
 
@@ -30,7 +31,7 @@ text2 = font1.render("Siga para o próximo nível  =)", True, BLACK)
 text_end = font1.render("Parabéns, você recolheu todos os lixos eletrônicos !", True, BLUE, 1)
 
 # Score
-score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
+score = level2.terra.score
 
 # Images
 sprite = pygame.image.load("level3/assets/sprite.png")

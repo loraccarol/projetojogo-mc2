@@ -1,5 +1,6 @@
 import pygame
 
+import level1.level1
 import introduction.introLevel2
 import music.playMusic
 
@@ -42,7 +43,7 @@ organic = pygame.image.load("level2/assets/organico_pixel.png")
 images = (metal, plastic, organic, paper, glass)
 
 # Score
-score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
+score = level1.level1.score
 
 # Music
 song = introduction.introLevel2.song

@@ -14,7 +14,7 @@ screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption("Default")
 
 # Score
-score = [0, 0, 0, 0]
+score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
 
 # Music
 song = introduction.introLevel1.song
@@ -136,7 +136,7 @@ def level1():
         for ponto in canudos:
             ponto.update(player)
             ponto.render(janela)
-            if player.placar == 25:
+            if player.placar == 1:
                 score[0] = player.placar
                 jogoAtivo = False
         points = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
