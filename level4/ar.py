@@ -137,7 +137,7 @@ while not done:
             else:
                 pygame.mixer.music.load("music/ar_musica.mp3")
                 pygame.mixer.music.play(-1)
-                # song = music.playMusic.music_on()
+                song = music.playMusic.music_on()
 
     screen.blit(bg, (0, 0))
     screen.blit(spaceship, spaceship_rect)
