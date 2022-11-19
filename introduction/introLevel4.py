@@ -41,7 +41,7 @@ text5 = font2.render("que nada disso tem utilidade para o planeta Terra...", Tru
 text6 = font2.render("Ajude a Sol na nave espacial a pegar os destroços jogados no espaço!", True, WHITE)
 text7 = font2.render("Com as setas do teclado, voe pelo espaço procurando e pegando o lixo espacial.", True, WHITE)
 text8 = font2.render("Você terá 30 segundos para completar o desafio.", True, WHITE)
-text9 = font2.render("Mas cuidado com os meteoros, eles fazem você perder pontos.", True, WHITE)
+text9 = font2.render("Mas cuidado com os meteoros, você vai explodir se caso bater em algum.", True, WHITE)
 text10 = font2.render("Boa sorte!!", True, BLUE2)
 
 end = font3.render("pressione a tecla S para continuar", True, BLACK)

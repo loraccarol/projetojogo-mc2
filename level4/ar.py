@@ -70,7 +70,7 @@ move = True
 
 meteor_list = []
 
-for i in range(20):
+for i in range(18):
     meteor_rect = meteor.get_rect()
     meteor_rect.x = random.randrange(0, screen_w)
     meteor_rect.y = random.randrange(-1000, 10)
@@ -119,7 +119,7 @@ def end():
     screen.blit(text2, (205, 300))
     screen.blit(text3, (70, 500))
     pygame.display.update()
-    pygame.time.delay(2500)
+    pygame.time.delay(3500)
 
 
 done = False
@@ -128,7 +128,7 @@ while not done:
     current_time = pygame.time.get_ticks()
 
     for event in pygame.event.get():
-        if event.type == pygame.QUIT or current_time > 30000:
+        if event.type == pygame.QUIT or current_time > 30000 or scoreboard == 30:
             end()
             pygame.quit()
         if event.type == pygame.KEYDOWN and event.key == pygame.K_m:
@@ -137,7 +137,7 @@ while not done:
             else:
                 pygame.mixer.music.load("music/ar_musica.mp3")
                 pygame.mixer.music.play(-1)
-                song = music.playMusic.music_on()
+                # song = music.playMusic.music_on()
 
     screen.blit(bg, (0, 0))
     screen.blit(spaceship, spaceship_rect)
@@ -197,11 +197,12 @@ while not done:
             meteor_list[i][0] = meteor_rect.x
         
         if spaceship_rect.collidelist(meteor_list) >= 0:
-            if move:
-                initial_frame = initial_frame + 1
-            if initial_frame >= len(frame_list):
-                initial_frame = 1
-            scoreboard = scoreboard - 1
+            pygame.mixer.music.load("music/explosao.mp3")
+            pygame.mixer.music.play(0)
+            pygame.time.delay(1000)
+            
+            end()
+            pygame.quit()
             screen.blit(frame, (spaceship_rect.x, spaceship_rect.y))
 
     scoreAir = font.render('PLACAR: ' + str(scoreboard), True, (255, 255, 255))
