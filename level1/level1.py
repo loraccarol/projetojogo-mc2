@@ -11,16 +11,20 @@ screen_w = 900
 screen_h = 600
 SIZE = [screen_w, screen_h]
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("Default")
+pygame.display.set_caption('NÍVEL 1 - ÁGUA')
 
 # Score
 score = [0, 0, 0, 0]  # Cada posição guarda o total de pontos por nível
 
+# Fonts
+font = pygame.font.SysFont('sans', 40)
+font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
+
 # Music
 song = introduction.introLevel1.song
 if song:
-    pygame.mixer.music.load("music/agua_musica.mp3")
-    pygame.mixer.music.play(-1)
+    #pygame.mixer.music.load("music/agua_musica.mp3")
+    #pygame.mixer.music.play(-1)
 
 
 def level1():
@@ -28,9 +32,6 @@ def level1():
     background = pygame.transform.scale(background, SIZE)
 
     janela = pygame.display.set_mode((900, 600))
-    pygame.display.set_caption('NÍVEL 1 - ÁGUA')
-    font = pygame.font.SysFont('sans', 40)
-    font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 
     class Player(pygame.sprite.Sprite):
         def __init__(self):
@@ -40,33 +41,16 @@ def level1():
             self.rect = self.image.get_rect()
             self.placar = 0
 
-            self.listaBaixo = [0, 1, 2, 3, 4]
-            self.listaEsq = [5, 6, 7, 8, 9]
-            self.listaDir = [10, 11, 12, 13, 14]
-            self.listaCima = [15, 16, 17, 18, 19]
-
-            self.paradoBaixo = [0]
-            self.paradoEsq = [5]
-            self.paradoDir = [10]
-            self.paradoCima = [1]
-
-            self.listaQuadros = self.listaDir
-
-            self.quadro = 0
-
         def render(self, janela):
             janela.blit(self.image, self.rect)
 
         def update(self, tecla):
             if tecla[pygame.K_UP]:
                 self.rect.move_ip(0, -5)
-                self.listaQuadros = self.listaCima
             if tecla[pygame.K_DOWN]:
                 self.rect.move_ip(0, 5)
-                self.listaQuadros = self.listaBaixo
             if tecla[pygame.K_RIGHT]:
                 self.rect.move_ip(5, 0)
-                self.listaQuadros = self.listaDir
             if self.rect.left < 0:
                 self.rect.left = 0
             elif self.rect.right > screen_w:
@@ -117,13 +101,13 @@ def level1():
             if evento.type == pygame.QUIT:
                 pygame.quit()
 
-            if evento.type == pygame.KEYDOWN and evento.key == pygame.K_m:
-                if song:
-                    song = music.playMusic.music_off()
-                else:
-                    pygame.mixer.music.load("music/agua_musica.mp3")
-                    pygame.mixer.music.play(-1)
-                    song = music.playMusic.music_on()
+            #if evento.type == pygame.KEYDOWN and evento.key == pygame.K_m:
+                #if song:
+                   #song = music.playMusic.music_off()
+                #else:
+                    #pygame.mixer.music.load("music/agua_musica.mp3")
+                    #pygame.mixer.music.play(-1)
+                    #song = music.playMusic.music_on()
 
             elif evento.type == ADDCANUDO:
                 new_canudo = Canudo()
@@ -136,17 +120,15 @@ def level1():
         for ponto in canudos:
             ponto.update(player)
             ponto.render(janela)
-            if player.placar == 1:
+            if player.placar == 20:
                 score[0] = player.placar
                 jogoAtivo = False
         points = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
         janela.blit(points, (600, 50))
-        textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
-        janela.blit(textMusic, (10, 10))
+        #textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
+        #janela.blit(textMusic, (10, 10))
         canudos.update(player)
 
-        # gid = player.listaQuadros[player.quadro]
-        # frame = player.get_frame(gid, 5, 40, 40, 0, 0, 0, 0)
 
         for entity in all_sprites:
             screen.blit(entity.image, entity.rect)
@@ -157,7 +139,7 @@ def level1():
 
 
 def end():
-    global song
+    #global song
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     BLUE = (102, 153, 255)
