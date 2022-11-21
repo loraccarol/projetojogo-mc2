@@ -35,14 +35,11 @@ textMusic = font_music.render("M = music on/off", True, BLACK)
 text1 = font1.render("Olá, eu me chamo CRUSH", True, BLUE2)
 text2 = font1.render("e vou te ajudar no próximo nível!", True, BLUE2)
 
-text3 = font2.render("Blá blá blá sobre o nível...", True, BLACK)
-text4 = font2.render("...", True, BLACK)
-text5 = font2.render("...", True, BLACK)
-
-text6 = font2.render("Ajude a Sol com ...", True, WHITE)
-text7 = font2.render("Como jogar...", True, WHITE)
-text8 = font2.render("Pontuação...", True, WHITE)
-text9 = font2.render("Boa sorte!!", True, BLUE2)
+text3 = font2.render("Você sabia que muitas tartarugas morrem devido ao lixo do oceâno?", True, BLUE2)
+text4 = font2.render("Elas confudem o plástico com comida", True, BLUE2)
+text5 = font2.render("Me ajude a remover o máximo de canudos do mar! para a Crush não se confundir", True, BLUE2)
+text6 = font2.render("Basta apertar as setas para ir até o canudo, cada canudo soma 1 ponto", True, BLUE2)
+text7 = font2.render("Você precisa totalizar 20 pontos. Boa sorte!", True, BLUE2)
 
 end = font3.render("pressione a tecla S para continuar", True, BLACK)
 
