@@ -55,12 +55,12 @@ if song:
 
 def get_frame(gId, columns, height, width, space_h, space_v, margin, top):
     global explosion
-    linha = gId // columns #linha onde se encontra o frame desejado
-    coluna = gId % columns #coluna onde se encontra o frame desejado
+    linha = gId // columns  # linha onde se encontra o frame desejado
+    coluna = gId % columns  # coluna onde se encontra o frame desejado
     x = (coluna * (width + space_h)) + margin
     y = (linha * (height + space_v)) + top
     
-    return explosion.subsurface(pygame.Rect((x,y),(width,height)))
+    return explosion.subsurface(pygame.Rect((x, y), (width, height)))
 
 
 list = [0, 1, 2, 3, 4, 5, 6]
@@ -110,16 +110,25 @@ def end():
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     BLUE = (102, 153, 255)
+    BEIGE = (255, 191, 128)
+    PINK = (172, 57, 57)
     font1 = pygame.font.SysFont("arial", 40, bold=False, italic=False)
+    font2 = pygame.font.SysFont("arial", 60, bold=False, italic=True)
+    font3 = pygame.font.SysFont("poorrichard", 90, bold=False, italic=False)
     text1 = font1.render("Pontuação final: " + str(scoreboard), True, WHITE)
     text2 = font1.render("Obrigada por jogar com a gente  =)", True, BLACK)
-    text3 = font1.render("VOCÊ CONQUISTOU UM TOTAL DE " + str(finalScore) + " PONTOS!", True, BLACK)
+    text3 = font3.render("G A M E   O V E R", True, PINK)
+    text4 = font2.render("PONTUAÇÃO FINAL: " + str(finalScore), True, BLACK)
     screen.fill(BLUE)
     screen.blit(text1, (305, 250))
     screen.blit(text2, (205, 300))
-    screen.blit(text3, (70, 500))
     pygame.display.update()
-    pygame.time.delay(3500)
+    pygame.time.delay(2500)
+    screen.fill(BEIGE)
+    screen.blit(text3, (150, 150))
+    screen.blit(text4, (115, 340))
+    pygame.display.update()
+    pygame.time.delay(5000)
 
 
 done = False

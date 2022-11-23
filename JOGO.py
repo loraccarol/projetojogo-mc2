@@ -33,9 +33,9 @@ def level4():
 
 def main():
     introduction.introGame
-    sleep(1)
+    #sleep(1)
     introduction.introLevel1
-    sleep(1)
+    #sleep(1)
     level1()
     introduction.introLevel2
     level2()

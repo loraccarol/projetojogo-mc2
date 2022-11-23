@@ -23,8 +23,8 @@ font_music = pygame.font.SysFont("arial", 20, bold=False, italic=False)
 # Music
 song = introduction.introLevel1.song
 if song:
-    #pygame.mixer.music.load("music/agua_musica.mp3")
-    #pygame.mixer.music.play(-1)
+    pygame.mixer.music.load("music/agua_musica.mp3")
+    pygame.mixer.music.play(-1)
 
 
 def level1():
@@ -101,13 +101,13 @@ def level1():
             if evento.type == pygame.QUIT:
                 pygame.quit()
 
-            #if evento.type == pygame.KEYDOWN and evento.key == pygame.K_m:
-                #if song:
-                   #song = music.playMusic.music_off()
-                #else:
-                    #pygame.mixer.music.load("music/agua_musica.mp3")
-                    #pygame.mixer.music.play(-1)
-                    #song = music.playMusic.music_on()
+            if evento.type == pygame.KEYDOWN and evento.key == pygame.K_m:
+                if song:
+                    song = music.playMusic.music_off()
+                else:
+                    pygame.mixer.music.load("music/agua_musica.mp3")
+                    pygame.mixer.music.play(-1)
+                    song = music.playMusic.music_on()
 
             elif evento.type == ADDCANUDO:
                 new_canudo = Canudo()
@@ -125,10 +125,9 @@ def level1():
                 jogoAtivo = False
         points = font.render('Placar: ' + str(player.placar), True, (255, 0, 0))
         janela.blit(points, (600, 50))
-        #textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
-        #janela.blit(textMusic, (10, 10))
+        textMusic = font_music.render("M = music on/off", True, (0, 0, 0))
+        janela.blit(textMusic, (10, 10))
         canudos.update(player)
-
 
         for entity in all_sprites:
             screen.blit(entity.image, entity.rect)
@@ -139,7 +138,7 @@ def level1():
 
 
 def end():
-    #global song
+    global song
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     BLUE = (102, 153, 255)

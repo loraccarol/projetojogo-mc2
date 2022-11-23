@@ -41,7 +41,7 @@ text5 = font2.render("como pilhas, computadores e celulares. Por serem muito tec
 text6 = font2.render("precisam ter um descarte diferente.", True, BLACK)
 text7 = font2.render("Você pode ajudar a Sol a recolher o lixo eletrônico?", True, WHITE)
 text8 = font2.render("Movimente a personagem com as setas do teclado para retirar o lixo da cidade.", True, WHITE)
-text9 = font2.render("Se você recolher corretamente, somará 10 pontos, mas se errar, perderá 10.", True, WHITE)
+text9 = font2.render("Se você recolher corretamente, somará 10 pontos, mas, se errar, perderá 10.", True, WHITE)
 text10 = font2.render("Boa sorte!!", True, BLUE2)
 
 end = font3.render("pressione a tecla S para continuar", True, BLACK)

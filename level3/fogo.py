@@ -35,6 +35,7 @@ score = level2.terra.score
 
 # Images
 sprite = pygame.image.load("level3/assets/sprite.png")
+# sprite_teste = pygame.image.load("level3/assets/sprite-teste.png")
 
 background = pygame.image.load("level3/assets/fogobackground.png")
 background = pygame.transform.scale(background, (900, 600))
@@ -134,10 +135,16 @@ def get_frame(gId, colunas, altura, largura, espaco_h, espaco_v, margem, topo):
     return sprite.subsurface(pygame.Rect((x, y), (largura, altura)))
 
 
+listaBottom = [12, 13, 14, 15]
+listaLeft = [8, 9, 10, 11]
+listaRight = [4, 5, 6, 7]
+listaTop = [16, 17, 18, 19]
+
+'''
 listaBottom = [0, 1, 2, 3, 4]
 listaLeft = [5, 6, 7, 8, 9]
 listaRight = [10, 11, 12, 13, 14]
-listaTop = [15, 16, 17, 18, 19]
+listaTop = [15, 16, 17, 18, 19]'''
 
 listaQuadros = listaRight
 quadro = 0
@@ -145,7 +152,7 @@ quadro = 0
 vel = 10
 mover = False
 fps = pygame.time.Clock()
-x = 50
+x = 20
 y = 55
 limit = ''
 
@@ -190,7 +197,8 @@ while levelActive:
         listaQuadros = listaTop
 
     g_id = listaQuadros[quadro]
-    frame = get_frame(g_id, 5, 40, 40, 0, 0, 0, 0)
+    frame = get_frame(g_id, 4, 50, 50, 0, 0, 0, 0)
+    # frame = get_frame(g_id, 5, 40, 40, 0, 0, 0, 0)
     if mover:
         quadro += 1
     if quadro >= len(listaQuadros):
@@ -202,8 +210,8 @@ while levelActive:
         x = 0
     if limit == 'up' and y <= 45:
         y = 45
-    if limit == 'down' and y >= 560:
-        y = 560
+    if limit == 'down' and y >= 550:
+        y = 550
 
     screen.blit(background, (0, 0))
     screen.blit(textMusic, (10, 10))
